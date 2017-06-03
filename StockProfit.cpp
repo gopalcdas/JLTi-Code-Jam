@@ -48,7 +48,7 @@ void StockN2(double price[], int n, double &maxProfit, int &buyDay, int &sellDay
     }
 }
 
-void StockGreedyOptimizedN(double price[], int start, int end, double &maxProfit, double &minValue, double &maxValue)
+void StockDivideAndConquerOptimizedN(double price[], int start, int end, double &maxProfit, double &minValue, double &maxValue)
 {
   if(start == end)
   {
@@ -61,10 +61,10 @@ void StockGreedyOptimizedN(double price[], int start, int end, double &maxProfit
   int mid = start + (end-start)/2;
 
   double leftMaxProfit, leftMinValue, leftMaxValue;
-  StockGreedyOptimizedN(price, start, mid, leftMaxProfit, leftMinValue, leftMaxValue);
+  StockDivideAndConquerOptimizedN(price, start, mid, leftMaxProfit, leftMinValue, leftMaxValue);
 
   double rightMaxProfit, rightMinValue, rightMaxValue;
-  StockGreedyOptimizedN(price, mid + 1, end, rightMaxProfit, rightMinValue, rightMaxValue);
+  StockDivideAndConquerOptimizedN(price, mid + 1, end, rightMaxProfit, rightMinValue, rightMaxValue);
 
   maxProfit = maxOutOfThree(leftMaxProfit, rightMaxProfit, rightMaxValue - leftMinValue);
 
@@ -72,7 +72,7 @@ void StockGreedyOptimizedN(double price[], int start, int end, double &maxProfit
   maxValue = leftMaxValue > rightMaxValue ? leftMaxValue : rightMaxValue;
 }
 
-void StockGreedyNlogN(double price[], int start, int end, double &maxProfit)
+void StockDivideAndConquerNlogN(double price[], int start, int end, double &maxProfit)
 {
   if(start == end)
   {
@@ -84,10 +84,10 @@ void StockGreedyNlogN(double price[], int start, int end, double &maxProfit)
   int mid = start + (end-start)/2;
 
   double leftMaxProfit;
-  StockGreedyNlogN(price, start, mid, leftMaxProfit);
+  StockDivideAndConquerNlogN(price, start, mid, leftMaxProfit);
 
   double rightMaxProfit;
-  StockGreedyNlogN(price, mid+1, end, rightMaxProfit);
+  StockDivideAndConquerNlogN(price, mid+1, end, rightMaxProfit);
 
   double minLeft = GetMin(price, start, end);
   double maxRight = GetMax(price, start, end);
@@ -112,7 +112,7 @@ int main()
     printf("Don't buy stock!\n\n");
 
   maxProfit = -1;
-  StockGreedyNlogN(price, 0, n-1, maxProfit);
+  StockDivideAndConquerOptimizedN(price, 0, n-1, maxProfit);
 
   if(maxProfit > 0)
     printf("Make $: %f\n\n", maxProfit);
@@ -121,7 +121,7 @@ int main()
 
   maxProfit = -1;
   double minValue = std::numeric_limits<double>::max(), maxValue = 0;
-  StockGreedyOptimizedN(price, 0, n-1, maxProfit, minValue, maxValue);
+  StockDivideAndConquerOptimizedN(price, 0, n-1, maxProfit, minValue, maxValue);
   if(maxProfit > 0)
     printf("Make $: %f\n\n", maxProfit);
   else
