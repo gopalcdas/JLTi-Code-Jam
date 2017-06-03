@@ -1,5 +1,5 @@
-// JLTi Code Jam Apr 2017
-// https://gopalcdas.wordpress.com/2017/05/01/jlti-code-jam-april-2017/
+//JLTi Code Jam Apr 2017
+//https://gopalcdas.wordpress.com/2017/05/01/jlti-code-jam-april-2017/
 
 #include <queue>  
 #include <iostream>  
