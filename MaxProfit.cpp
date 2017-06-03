@@ -1,35 +1,37 @@
-// Program to find best buying and selling days
+// JLTi Code Jam Mar 2017
+// https://gopalcdas.wordpress.com/2017/05/07/jlti-code-jam-may-2017/
+
 #include <stdio.h>
 #include <limits>  
 
 double maxOutOfThree(double a, double b, double c)
 {
-	double max;
-	max = a > b ? a : b;
-	if(c > max)
-		return c;
+  double max;
+  max = a > b ? a : b;
+  if(c > max)
+    return c;
 
-	return max;
+  return max;
 }
 
 double GetMax(double price[], int start, int end)
 {
-	double max = -1;
-	for(int i=start; i<=end; i++)
-		if(price[i] > max)
-			max = price[i];
+  double max = -1;
+  for(int i=start; i<=end; i++)
+    if(price[i] > max)
+      max = price[i];
 
-	return max;
+  return max;
 }
 
 double GetMin(double price[], int start, int end)
 {
-	double min = std::numeric_limits<double>::max();
-	for(int i=start; i<=end; i++)
-		if(price[i] < min)
-			min = price[i];
+  double min = std::numeric_limits<double>::max();
+  for(int i=start; i<=end; i++)
+    if(price[i] < min)
+      min = price[i];
 
-	return min;
+  return min;
 }
 
 void StockN2(double price[], int n, double &maxProfit, int &buyDay, int &sellDay)
