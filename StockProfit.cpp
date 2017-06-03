@@ -48,30 +48,6 @@ void StockN2(double price[], int n, double &maxProfit, int &buyDay, int &sellDay
     }
 }
 
-void StockDivideAndConquerOptimizedN(double price[], int start, int end, double &maxProfit, double &minValue, double &maxValue)
-{
-  if(start == end)
-  {
-    // just one value, return
-    maxProfit = 0;
-    minValue = maxValue = price[end];
-    return;
-  }
-
-  int mid = start + (end-start)/2;
-
-  double leftMaxProfit, leftMinValue, leftMaxValue;
-  StockDivideAndConquerOptimizedN(price, start, mid, leftMaxProfit, leftMinValue, leftMaxValue);
-
-  double rightMaxProfit, rightMinValue, rightMaxValue;
-  StockDivideAndConquerOptimizedN(price, mid + 1, end, rightMaxProfit, rightMinValue, rightMaxValue);
-
-  maxProfit = maxOutOfThree(leftMaxProfit, rightMaxProfit, rightMaxValue - leftMinValue);
-
-  minValue = leftMinValue > rightMinValue ? rightMinValue : leftMinValue;
-  maxValue = leftMaxValue > rightMaxValue ? leftMaxValue : rightMaxValue;
-}
-
 void StockDivideAndConquerNlogN(double price[], int start, int end, double &maxProfit)
 {
   if(start == end)
@@ -95,6 +71,30 @@ void StockDivideAndConquerNlogN(double price[], int start, int end, double &maxP
   double minValue = GetMin(price, start, mid);
   double maxValue = GetMax(price, mid+1, end);
   maxProfit = maxOutOfThree(leftMaxProfit, rightMaxProfit, maxValue - minValue);
+}
+
+void StockDivideAndConquerOptimizedN(double price[], int start, int end, double &maxProfit, double &minValue, double &maxValue)
+{
+  if(start == end)
+  {
+    // just one value, return
+    maxProfit = 0;
+    minValue = maxValue = price[end];
+    return;
+  }
+
+  int mid = start + (end-start)/2;
+
+  double leftMaxProfit, leftMinValue, leftMaxValue;
+  StockDivideAndConquerOptimizedN(price, start, mid, leftMaxProfit, leftMinValue, leftMaxValue);
+
+  double rightMaxProfit, rightMinValue, rightMaxValue;
+  StockDivideAndConquerOptimizedN(price, mid + 1, end, rightMaxProfit, rightMinValue, rightMaxValue);
+
+  maxProfit = maxOutOfThree(leftMaxProfit, rightMaxProfit, rightMaxValue - leftMinValue);
+
+  minValue = leftMinValue > rightMinValue ? rightMinValue : leftMinValue;
+  maxValue = leftMaxValue > rightMaxValue ? leftMaxValue : rightMaxValue;
 }
 
 int main()
