@@ -1,4 +1,4 @@
-//JLTi Code Jam Mar 2017
+//JLTi Code Jam May 2017
 //https://gopalcdas.wordpress.com/2017/05/07/jlti-code-jam-may-2017/
 //https://gopalcdas.wordpress.com/2017/06/03/solution-making-money-at-stock-market/
 
