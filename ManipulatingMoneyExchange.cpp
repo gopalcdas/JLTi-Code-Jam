@@ -1,4 +1,5 @@
-// Program to find negative cycle in bellman ford
+//JLTi Code Jam Jun 2017
+//https://gopalcdas.wordpress.com/category/jlti-code-jam/
 #include <stdio.h>
 #include <limits>
 #include <string>
