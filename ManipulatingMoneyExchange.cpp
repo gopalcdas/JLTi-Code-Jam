@@ -7,9 +7,10 @@
 
 using namespace std;
 
+#define EXTRA_CURRENCY "NOC"
+
 struct Vertex
 {
-  int id;
   string name;
 };
 
@@ -26,9 +27,8 @@ struct Graph
   Edge *edges;
 };
 
-void SetVertex(Vertex* vertex, int id, string name)
+void SetVertex(Vertex* vertex, string name)
 {
-  vertex->id = id;
   vertex->name = name;
 }
 
@@ -46,50 +46,65 @@ double NegativeLogRate(double rate)
 
 Graph* GetInputGraphProfit(int &numberOfVertices, int &numberOfEdges)
 {
-  numberOfVertices = 6;
-  numberOfEdges = 6;
+  numberOfVertices = 7;
+  numberOfEdges = 12;
 
   Graph *graph = new Graph;
   graph->vertices = new Vertex[numberOfVertices];
   graph->edges = new Edge[numberOfEdges];
 
-  SetVertex(&graph->vertices[0], 0, "USD");
-  SetVertex(&graph->vertices[1], 1, "SGD");
-  SetVertex(&graph->vertices[2], 0, "MYR");
-  SetVertex(&graph->vertices[3], 0, "INR");
-  SetVertex(&graph->vertices[4], 0, "GBP");
-  SetVertex(&graph->vertices[5], 0, "CAD");
+  SetVertex(&graph->vertices[0], EXTRA_CURRENCY);
+  SetVertex(&graph->vertices[1], "USD");
+  SetVertex(&graph->vertices[2], "SGD");
+  SetVertex(&graph->vertices[3], "MYR");
+  SetVertex(&graph->vertices[4], "INR");
+  SetVertex(&graph->vertices[5], "GBP");
+  SetVertex(&graph->vertices[6], "CAD");
 
-  SetEdge(&graph->edges[0], 0, 1, NegativeLogRate(1.38));
-  SetEdge(&graph->edges[1], 1, 2, NegativeLogRate(3.08));
-  SetEdge(&graph->edges[2], 2, 3, NegativeLogRate(15.12));
-  SetEdge(&graph->edges[3], 3, 4, NegativeLogRate(0.012));
-  SetEdge(&graph->edges[4], 4, 0, NegativeLogRate(1.30));
-  SetEdge(&graph->edges[5], 5, 4, NegativeLogRate(1.30));
-  
+  SetEdge(&graph->edges[0], 0, 1, 0);
+  SetEdge(&graph->edges[1], 0, 2, 0);
+  SetEdge(&graph->edges[2], 0, 3, 0);
+  SetEdge(&graph->edges[3], 0, 4, 0);
+  SetEdge(&graph->edges[4], 0, 5, 0);
+  SetEdge(&graph->edges[5], 0, 6, 0);
+
+  SetEdge(&graph->edges[6], 1, 2, NegativeLogRate(1.38));
+  SetEdge(&graph->edges[7], 2, 3, NegativeLogRate(3.08));
+  SetEdge(&graph->edges[8], 3, 4, NegativeLogRate(15.12));
+  SetEdge(&graph->edges[9], 4, 5, NegativeLogRate(0.012));
+  SetEdge(&graph->edges[10], 5, 1, NegativeLogRate(1.30));
+  SetEdge(&graph->edges[11], 6, 5, NegativeLogRate(1.30));
+
   return graph;
 }
 
 Graph* GetInputGraphLoss(int &numberOfVertices, int &numberOfEdges)
 {
-  numberOfVertices = 5;
-  numberOfEdges = 5;
-  
+  numberOfVertices = 6;
+  numberOfEdges = 10;
+
   Graph *graph = new Graph;
   graph->vertices = new Vertex[numberOfVertices];
   graph->edges = new Edge[numberOfEdges];
 
-  SetVertex(&graph->vertices[0], 0, "USD");
-  SetVertex(&graph->vertices[1], 1, "SGD");
-  SetVertex(&graph->vertices[2], 0, "MYR");
-  SetVertex(&graph->vertices[3], 0, "INR");
-  SetVertex(&graph->vertices[4], 0, "GBP");
+  SetVertex(&graph->vertices[0], EXTRA_CURRENCY);
+  SetVertex(&graph->vertices[1], "USD");
+  SetVertex(&graph->vertices[2], "SGD");
+  SetVertex(&graph->vertices[3], "MYR");
+  SetVertex(&graph->vertices[4], "INR");
+  SetVertex(&graph->vertices[5], "GBP");
 	
-  SetEdge(&graph->edges[0], 0, 1, NegativeLogRate(1.38295));
-  SetEdge(&graph->edges[1], 1, 2, NegativeLogRate(3.08614));
-  SetEdge(&graph->edges[2], 2, 3, NegativeLogRate(15.0996));
-  SetEdge(&graph->edges[3], 3, 4, NegativeLogRate(0.0119755));
-  SetEdge(&graph->edges[4], 4, 0, NegativeLogRate(1.295));
+  SetEdge(&graph->edges[0], 0, 1, 0);
+  SetEdge(&graph->edges[1], 0, 2, 0);
+  SetEdge(&graph->edges[2], 0, 3, 0);
+  SetEdge(&graph->edges[3], 0, 4, 0);
+  SetEdge(&graph->edges[4], 0, 5, 0);
+
+  SetEdge(&graph->edges[5], 1, 2, NegativeLogRate(1.38295));
+  SetEdge(&graph->edges[6], 2, 3, NegativeLogRate(3.08614));
+  SetEdge(&graph->edges[7], 3, 4, NegativeLogRate(15.0996));
+  SetEdge(&graph->edges[8], 4, 5, NegativeLogRate(0.0119755));
+  SetEdge(&graph->edges[9], 5, 1, NegativeLogRate(1.295));
 	
   return graph;
 }
