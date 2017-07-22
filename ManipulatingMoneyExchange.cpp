@@ -151,6 +151,21 @@ void PrintCycle(Graph* graph, int *predecessor, int currentVertex, int firstVert
   printf("-> %s ", graph->vertices[currentVertex].name.c_str());
 }
 
+void PrintNegativeResult(Graph *graph, int *predecessor, int edgeWithNegativeCycle)
+{
+  printf("Profit making cycle: %s", graph->vertices[graph->edges[edgeWithNegativeCycle].fromId].name.c_str());
+  PrintCycle(graph, predecessor, graph->edges[edgeWithNegativeCycle].fromId, graph->edges[edgeWithNegativeCycle].fromId);
+  printf("\n\n");
+}
+
+void PrintResult(Graph *graph, int *predecessor, bool success, int edgeWithNegativeCycle)
+{
+  if(!success)
+    PrintNegativeResult(graph, predecessor, edgeWithNegativeCycle);
+  else
+    printf("No luck here\n\n");
+}
+
 void Call(Graph *graph, int numberOfVertices, int numberOfEdges)
 {
   double *distance = new double[numberOfVertices];
@@ -162,14 +177,7 @@ void Call(Graph *graph, int numberOfVertices, int numberOfEdges)
   int edgeWithNegativeCycle;
   bool success = BellmanFord(graph, numberOfVertices, numberOfEdges, 0, distance, predecessor, edgeWithNegativeCycle);
 
-  if(!success)
-  {
-    printf("Profit making cycle: %s", graph->vertices[graph->edges[edgeWithNegativeCycle].fromId].name.c_str());
-    PrintCycle(graph, predecessor, graph->edges[edgeWithNegativeCycle].fromId, graph->edges[edgeWithNegativeCycle].fromId);
-    printf("\n\n");
-  }
-  else
-    printf("No luck here\n\n");
+  PrintResult(graph, predecessor, success, edgeWithNegativeCycle);
 }
 
 int main()
