@@ -1,5 +1,5 @@
 //JLTi Code Jam Jun 2017
-//https://gopalcdas.wordpress.com/category/jlti-code-jam/
+//https://gopalcdas.wordpress.com/2017/06/08/manipulating-money-exchange/
 #include <stdio.h>
 #include <limits>
 #include <string>
@@ -142,7 +142,7 @@ bool BellmanFord(Graph *graph, int numberOfVertices, int numberOfEdges, int sour
   {
     valueChanged = false;
     for(int j=0; j<numberOfEdges; j++)
-      valueChanged = valueChanged || Relax(&graph->edges[j], distance, predecessor);
+      valueChanged = Relax(&graph->edges[j], distance, predecessor) || valueChanged;
 
     if(!valueChanged)
       return true;
