@@ -73,7 +73,7 @@ Graph* GetInputGraphProfit(int &numberOfVertices, int &numberOfEdges)
   SetEdge(&graph->edges[8], 3, 4, NegativeLogRate(15.12));
   SetEdge(&graph->edges[9], 4, 5, NegativeLogRate(0.012));
   SetEdge(&graph->edges[10], 5, 1, NegativeLogRate(1.30));
-  SetEdge(&graph->edges[11], 6, 5, NegativeLogRate(1.30));
+  SetEdge(&graph->edges[11], 6, 5, NegativeLogRate(0.57));
 
   return graph;
 }
