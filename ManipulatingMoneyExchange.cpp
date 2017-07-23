@@ -121,9 +121,15 @@ void InitializePredecessor(int *predecessor, int numberOfVertices)
     predecessor[i] = -1;
 }
 
+bool IsEqual(double f, double s)
+{
+  return std::fabs(f - s) < std::numeric_limits<double>::epsilon();
+}
+
 bool Relax (Edge *e, double* distance, int* predecessor)
 {
-  if(distance[e->fromId] != numeric_limits<double>::max() && distance[e->toId] > distance[e->fromId] + e->cost)
+  if(!IsEqual(numeric_limits<double>::max(), distance[e->fromId]) 
+     && distance[e->toId] > distance[e->fromId] + e->cost)
   {
     distance[e->toId] = distance[e->fromId] + e->cost;
     predecessor[e->toId] = e->fromId;
