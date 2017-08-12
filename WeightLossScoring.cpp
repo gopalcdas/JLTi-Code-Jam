@@ -117,7 +117,7 @@ Position FindPosition(double v, vector <vector<double>> allPromisingLists, int& 
     return BIGGER_THAN_ALL;
 
   insertAt = ToBeReplacedItemIndex(allPromisingLists, 0, allPromisingLists.size(), v);
-    return IN_THE_MIDDLE;
+  return IN_THE_MIDDLE;
 }
 
 int ToBeReplacedItemIndex(vector<vector<double>> allPromisingLists, int l, int r, double v)
@@ -173,7 +173,7 @@ void AddAtEnd(double v, vector <vector<double>>& allPromisingLists)
 {
   vector<double> largest = CopyFromLongest(allPromisingLists.back());
   largest.push_back(v);
-  allPromisingLists.insert(allPromisingLists.end(), largest);	
+  allPromisingLists.push_back(largest);
 }
 
 vector<double> CopyFromLongest(vector<double> longest)
