@@ -191,15 +191,6 @@ void AddInMiddle(double v, vector<vector<double>>& allPromisingLists, int insert
   allPromisingLists.at(insertAt).push_back(v);
 }
 
-vector<double> CopyFromBiggestMatchingEnding(vector<vector<double>>& allPromisingLists, int copyFrom)
-{
-  vector<double> newSeq;
-  for(unsigned int i=0; i<allPromisingLists.at(copyFrom).size(); i++)
-    newSeq.push_back(allPromisingLists.at(copyFrom).at(i));
-	
-  return newSeq;
-}
-
 unsigned int GetBest(vector<vector<double>> allPromisingLists)
 {
   unsigned int max = 0;
