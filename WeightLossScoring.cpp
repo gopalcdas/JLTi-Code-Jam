@@ -23,7 +23,7 @@ void DealWithThisNumber(double n, vector<vector<double>>& allPromisingLists, int
 void AddAtBeginning(double n, vector<vector<double>>& allPromisingLists);
 void AddInMiddle(double v, vector<vector<double>>& allPromisingLists, int insertAt);
 void AddAtEnd(double v, vector <vector<double>>& allPromisingLists);
-vector<double> CopyFromLongest(vector<double> longest);
+vector<double> CopyFrom(vector<double> longest);
 
 void Call(double weight[], int n);
 double* Negative(double weight[], int n);
@@ -170,12 +170,12 @@ void AddAtBeginning(double v, vector <vector<double>>& allPromisingLists)
 
 void AddAtEnd(double v, vector <vector<double>>& allPromisingLists)
 {
-  vector<double> largest = CopyFromLongest(allPromisingLists.back());
+  vector<double> largest = CopyFrom(allPromisingLists.back());
   largest.push_back(v);
   allPromisingLists.push_back(largest);
 }
 
-vector<double> CopyFromLongest(vector<double> longest)
+vector<double> CopyFrom(vector<double> longest)
 {
   vector<double> newLongest;
   for(unsigned int i=0; i<longest.size(); i++)
@@ -186,8 +186,14 @@ vector<double> CopyFromLongest(vector<double> longest)
 
 void AddInMiddle(double v, vector<vector<double>>& allPromisingLists, int insertAt)
 {
-  allPromisingLists.at(insertAt).pop_back();
-  allPromisingLists.at(insertAt).push_back(v);
+  vector<double> middle = CopyFrom(allPromisingLists.at(insertAt-1));
+  middle.push_back(v);	
+
+  allPromisingLists.insert(allPromisingLists.begin()+insertAt, middle);
+
+  int nextLength = allPromisingLists.at(insertAt+1).size();
+  if(nextLength == middle.size())
+    allPromisingLists.erase(allPromisingLists.begin()+insertAt+1);
 }
 
 bool IsGreaterThan(double f, double s)
