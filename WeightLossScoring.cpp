@@ -27,7 +27,6 @@ vector<double> CopyFromLongest(vector<double> longest);
 
 void Call(double weight[], int n);
 double* Negative(double weight[], int n);
-unsigned int GetBest(vector<vector<double>> allPromisingLists);
 
 bool IsGreaterThan(double f, double s);
 bool IsGreaterThanEqual(double f, double s);
@@ -102,7 +101,7 @@ int SkylineNlogN(double weight[], int n)
     DealWithThisNumber(weight[i], allPromisingLists, insertAt, p);
   }
 
-  return GetBest(allPromisingLists);
+  return allPromisingLists.back().size();
 }
 
 Position FindPosition(double v, vector <vector<double>> allPromisingLists, int& insertAt)
@@ -189,16 +188,6 @@ void AddInMiddle(double v, vector<vector<double>>& allPromisingLists, int insert
 {
   allPromisingLists.at(insertAt).pop_back();
   allPromisingLists.at(insertAt).push_back(v);
-}
-
-unsigned int GetBest(vector<vector<double>> allPromisingLists)
-{
-  unsigned int max = 0;
-  for(unsigned int i=0; i<allPromisingLists.size(); i++)
-    if(allPromisingLists.at(i).size() > max)
-      max = allPromisingLists.at(i).size();
-
-  return max;
 }
 
 bool IsGreaterThan(double f, double s)
