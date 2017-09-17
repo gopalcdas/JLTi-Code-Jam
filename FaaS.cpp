@@ -68,8 +68,7 @@ double DP(int lunchDays[], int n)
 
 template <typename T> T Cheapest(T a, T b, T c)
 {
-  T cheapest = min(a, b);
-  return min(cheapest, c);
+  return min(min(a, b), c);
 }
 
 bool IsGreaterThan(double f, double s)
