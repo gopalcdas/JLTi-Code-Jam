@@ -116,7 +116,8 @@ void PrintScores(int *scores, int *bestScores, int n)
     {
       if(firstPrinted)
         printf(", %d", scores[i]);
-      else{
+      else
+      {
         firstPrinted = true;
         printf("%d", scores[i]);
       }
