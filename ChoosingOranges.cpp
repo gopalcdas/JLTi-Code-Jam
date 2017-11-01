@@ -112,15 +112,15 @@ void PrintScores(int *scores, int *bestScores, int n)
 {
   bool firstPrinted = false;
   for (int i = 0; i < n; i++)
-  if (bestScores[i])
-  {
-    if(firstPrinted)
-      printf(", %d", scores[i]);
-    else{
-      firstPrinted = true;
-      printf("%d", scores[i]);
+    if (bestScores[i])
+    {
+      if(firstPrinted)
+        printf(", %d", scores[i]);
+      else{
+        firstPrinted = true;
+        printf("%d", scores[i]);
+      }
     }
-  }
 	
   printf("\n\n");
 }
