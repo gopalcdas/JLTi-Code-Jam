@@ -1,4 +1,4 @@
-//JLTi Code Jam Aug 2017
+//JLTi Code Jam Oct 2017
 //https://gopalcdas.wordpress.com/2017/10/14/choosing-oranges/
 
 #include <stdio.h>
