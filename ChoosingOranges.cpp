@@ -89,9 +89,17 @@ void FindBestScores(Node *nodes, int* scores, int n, int m, int *bestScores)
     q.push(nodes[i]);
 
   for (int i = m-1; i < n; i++)
-  {	
-    q.push(nodes[i]);
+  {
     Node node = q.top();
+    if (node.score <= nodes[i].score)
+    {
+      q.pop();
+      bestScores[i] = 1;
+      q.push(nodes[i]);
+      continue;
+    }
+
+    q.push(nodes[i]);
 		
     while (node.index < (i + 1 - m))
     {
